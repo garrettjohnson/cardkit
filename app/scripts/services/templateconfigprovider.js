@@ -217,21 +217,37 @@ angular.module('cardkitApp')
               type: 'image',
               controlsOrder: 6,
               width: function() {
-                return $scope.size.gridSize * 2;
+                if( $scope.theme.name === 'College'){
+                  return 125;
+                } else {
+                  return $scope.size.gridSize * 2;
+                }
               },
               height: function() {
-                return $scope.size.gridSize * 2;
+                if( $scope.theme.name === 'College'){
+                  return 30;
+                } else {
+                  return $scope.size.gridSize * 2;
+                }
               },
               src: function() {
                 return $scope.theme.images.logoSrc;
               },
               opacity: 1,
               x: function() {
-                return $scope.size.width - ($scope.size.gridSize * 3);
+                if( $scope.theme.name === 'College'){
+                  return $scope.size.width - this.width() - $scope.size.gridSize + 8;
+                } else {
+                  return $scope.size.width - ($scope.size.gridSize * 3);
+                }
               },
               y: function() {
-                var h = ($scope.size.gridSize) / 2;
-                return $scope.size.height - (this.height() + h);
+                if( $scope.theme.name === 'College'){
+                  return $scope.size.height - this.height() - $scope.size.gridSize + 8;
+                } else {
+                  var h = ($scope.size.gridSize) / 2;
+                  return $scope.size.height - (this.height() + h);
+                }
               },
               preserveAspectRatio: 'xMinYMin meet',
               draggable: false
