@@ -2,19 +2,12 @@
 @import "settings";
 @import "mixins";
 @import "reset";
-@import "login";
 @import "fonts";
 // bower:scss
 // endbower
 
 *, *:before, *:after {
   box-sizing: border-box;
-}
-
-
-
-html {
-  background-color: $pink-tint1;
 }
 
 // Body
@@ -25,7 +18,6 @@ body {
   padding: 0 0 0px;
   max-width: 1200px;
   min-height: 100vh;
-  box-shadow: 0px 0px 15px $grey-tint2;
   background-color: $white;
   // overflow: hidden;
 }
@@ -58,9 +50,6 @@ a {
 // Body
 @import "body";
 
-// Footer
-@import "footer";
-
 // SVGs
 #svg, #snap-svg {
   *[draggable="true"]{
@@ -73,21 +62,20 @@ a {
 
 // Dropzone
 .dropzone {
-  border: 2px dashed $grey-tint1;
-  width: 100%;
-  height: 200px;
-  position: relative;
-  margin: 0 0 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid rgba(45,53,56,0.1);
+  color: #6a6a69;
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  height: 48px;
+  line-height: 48px;
+  margin-bottom: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
 
-  &:before {
-    content: 'Drop your image here';
-    color: $grey-tint1;
-    font-size: 2em;
-    position: absolute;
-    top: 60px; left: 0;
-    width: 100%;
-    text-align: center;
-  }
 
   &.drag-over-accept {
     background: #eaeaea;

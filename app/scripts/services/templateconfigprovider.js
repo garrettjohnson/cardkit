@@ -222,22 +222,17 @@ angular.module('cardkitApp')
                 return $scope.size.gridSize;
               },
               y: function() {
-                return $scope.size.height - ($scope.size.gridSize);
+                return $scope.size.height - ($scope.size.gridSize + 3);
               },
               fontWeight: 500,
               draggable: true,
               editable: {
-                text: true,
-                fontSize: {
-                  'Small (18px)': 18,
-                  'Standard (22px)': 22,
-                  'Large (24px)': 24,
-                }
+                text: true
               },
             }, {
               name: 'Credit',
               type: 'text',
-              text: 'Ogden Nash',
+              text: 'Pastor Steve',
               controlsOrder: 2,
               fill: function() {
                 return $scope.theme.quote;
@@ -251,7 +246,13 @@ angular.module('cardkitApp')
               x: function() {
                 return $scope.size.gridSize;
               },
-              y: 235,
+              y: function() {
+                var headlineLineBreaks = $scope.config.svg.elements[5].text.split(/\r\n|\r|\n/).length;
+                //headlineLineBreaks--;
+
+                // $scope.size.gridSize*4 Since Y is return $scope.config.svg.elements[5].y
+                return $scope.size.gridSize*4 + (headlineLineBreaks*$scope.config.svg.elements[5].fontSize);
+              },
               fontWeight: 500,
               draggable: true,
               editable: {
@@ -264,7 +265,7 @@ angular.module('cardkitApp')
             }, {
               name: 'Quote',
               type: 'text',
-              text: '‘Bankers are just like\neverybody else.\nExcept richer’',
+              text: '“Our goal as\nfollowers of Jesus\nis to be like him”',
               fill: function() {
                 return $scope.theme.quote;
               },
@@ -395,7 +396,7 @@ angular.module('cardkitApp')
                 return $scope.size.gridSize;
               },
               y: function() {
-                return $scope.size.height - ($scope.size.gridSize);
+                return $scope.size.height - ($scope.size.gridSize + 10);
               },
               fontWeight: 500,
               draggable: false,
@@ -1053,6 +1054,202 @@ angular.module('cardkitApp')
               },
             }];
           }
+        },{
+          name: 'College Insta',
+          elements: function($scope) {
+            return [{
+              name: 'Background Colour',
+              type: 'rect',
+              controlsOrder: 7,
+              height: function() {
+                return $scope.size.height;
+              },
+              width: function() {
+                return $scope.size.width;
+              },
+              fill: function() {
+                return $scope.theme.background;
+              },
+              editable: {
+                fill: {
+                  'Black': '#000000',
+                  'Gray': '#777',
+                  'Red': '#C52126',
+                  'Yellow': '#DEB827',
+                  'Gold': '#D4AB4C',
+                  'Green': '#004C54',
+                  'Orange': '#F05523',
+                  'Deep Blue': '#0B2440',
+                  'Pink': '#B61E3F',
+                  'Dark Gray': '#1E1819',
+                  'Canary': '#EDE15A',
+                  'Green 2': '#21523A',
+                  'Purple': '#3A2762',
+                  'Light Gray': '#B9B9B9',
+                  'Orange 2': '#F26522',
+                  'Navy': '#183C6C',
+                  'Red 2': '#AE2A2C',
+                  'Raspberry': '#7A1E34',
+                  'Blue': '#054087',
+                  'Pewk': '#343F38',
+                },
+              }
+            }, {
+              name: 'Promo Image',
+              type: 'image',
+              width: function() {
+                return $scope.size.width;
+              },
+              controlsOrder: 1,
+              height: function() {
+                var h;
+                if (typeof this.width === 'string') {
+                  h = +this.width;
+                } else {
+                  h = this.width();
+                }
+                return h;
+              },
+              src: function() {
+                return $scope.theme.images.promoSrc;
+              },
+              opacity: 1,
+              x: '0%',
+              y: '0%',
+              preserveAspectRatio: 'xMinYMin meet',
+              draggable: true,
+              defaultFilter: '',
+              editable: {
+                src: true,
+                width: true,
+                opacity: true,
+                filters: [
+                  'Grayscale',
+                  'Blur'
+                ],
+              }
+            }, {
+              name: 'Logo',
+              type: 'image',
+              controlsOrder: 6,
+              width: function() {
+                return 224;
+              },
+              height: function() {
+                return 100;
+              },
+              src: function() {
+                return $scope.theme.images.logoSrc;
+              },
+              opacity: 1,
+              x: function() {
+                var w = ($scope.size.width) / 2;
+                return w - (this.width() / 2);
+              },
+              y: function() {
+                return $scope.size.height - this.height();
+              },
+              // x: 500,
+              // y: 150,
+              preserveAspectRatio: 'xMinYMin meet',
+              draggable: false
+            }, {
+              name: 'Headline',
+              type: 'text',
+              text: 'No Service',
+              controlsOrder: 2,
+              fill: function() {
+                return $scope.theme.xref;
+              },
+              fontSize: 90,
+              lineHeight:0.5,
+              textTransform: 'uppercase',
+              textShadow: '1px 1px 1px #000000',
+              letterSpacing: '-1.5',
+              fontFamily: function() {
+                return $scope.theme.headlineFont;
+              },
+              textAnchor: 'middle',
+              x: function() {
+                return '50%';
+              },
+              y: function() {
+
+                var thisLineBreaks = this.text.split(/\r\n|\r|\n/).length;
+                //var thisHeight = this.fontSize*thisLineBreaks;
+                var minus = (thisLineBreaks*this.fontSize*0.5);
+                if ($scope.config.svg.elements[4].text !== '') {
+                  minus = minus + 30;
+                }
+
+                // 135 = calculated
+                return ($scope.size.height / 2) - minus + 78;
+              },
+              fontWeight: 800,
+              draggable: false,
+              editable: {
+                text: true,
+                fontSize: {
+                  'Small (18px)': 18,
+                  'Standard (90px)': 90,
+                  'Large (24px)': 24,
+                }
+              },
+            }, {
+              name: 'Subhead',
+              type: 'text',
+              text: 'we’ll be back next week',
+              controlsOrder: 2,
+              fill: function() {
+                return $scope.theme.xref;
+              },
+              fontSize: 42,
+              fontWeight: 700,
+              letterSpacing: '-0.7',
+              fontFamily: function() {
+                return $scope.theme.headlineFont;
+              },
+              textAnchor: 'middle',
+              x: function() {
+                return '50%';
+              },
+              y: function() {
+                var headlineLineBreaks = $scope.config.svg.elements[4].text.split(/\r\n|\r|\n/).length;
+                var headlinefontSize = $scope.config.svg.elements[4].fontSize;
+                var headlineY = ($scope.size.height / 2) - (headlineLineBreaks*headlinefontSize*0.5) + 78;
+                if (this.text !== '') {
+                  headlineY = headlineY - 4;
+                }
+                console.log(headlineY);
+                var finalY = headlineY + (headlineLineBreaks*headlinefontSize);
+                // var thisLineBreaks = this.text.split(/\r\n|\r|\n/).length;
+                // if(thisLineBreaks == 1){
+                //   var thisHeight = this.fontSize*thisLineBreaks*0.715;
+                // } else {
+                //   var thisHeight = this.fontSize*thisLineBreaks*0.86111;
+                // }
+                //console.log(thisHeight);
+                //var offset = (thisHeight / 2);
+                // var thisLineBreaks = this.text.split(/\r\n|\r|\n/).length;
+                // var headlineLineBreaks = $scope.config.svg.elements[4].text.split(/\r\n|\r|\n/).length;
+                //
+                // var totalheight = (thisLineBreaks*this.fontSize) + (headlineLineBreaks*$scope.config.svg.elements[4].fontSize);
+                // //console.log(totalheight);
+                // var offset = (totalheight / 2) - (thisLineBreaks*this.fontSize*.35);
+
+                return finalY-this.fontSize;//($scope.size.height / 2) + offset;
+              },
+              draggable: false,
+              editable: {
+                text: true,
+                fontSize: {
+                  'Small (18px)': 18,
+                  'Standard (42px)': 42,
+                  'Large (24px)': 24,
+                }
+              },
+            }];
+          }
         }, {
           name: 'Promo A',
           elements: function($scope) {
@@ -1098,7 +1295,8 @@ angular.module('cardkitApp')
                 src: true,
                 width: true,
                 filters: [
-                  'Grayscale'
+                  'Grayscale',
+                  'Blur'
                 ],
               }
             }, {
@@ -1481,6 +1679,7 @@ angular.module('cardkitApp')
                 text: true,
                 fontSize: {
                   'Small (32px)': 32,
+                  'Twitter (38px)': 38,
                   'Standard (44px)': 44,
                   'Large (50px)': 50,
                 },

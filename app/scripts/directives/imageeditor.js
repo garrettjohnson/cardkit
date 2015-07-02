@@ -9,12 +9,14 @@
 angular.module('cardkitApp')
   .directive('imageEditor', function () {
     return {
+      priority: 10,
+      terminal: true,
       template: '<div>' +
             '<label>Image</label>' +
-            '<div class="warning label"><em>Heads Up!</em> Only images from the story you are tweeting can be used and then only if they are <em>FT-owned</em> or come from <em>Getty, Reuters, Dreamstime</em> or <em>Bloomberg</em></div>' +
+            // '<div class="warning label hidden"><em>Heads Up!</em> Only images from the story you are tweeting can be used and then only if they are <em>FT-owned</em> or come from <em>Getty, Reuters, Dreamstime</em> or <em>Bloomberg</em></div>' +
             '<div class="dropzone" drop="onDrop($data, $event, key)" drop-effect="copy" drop-accept="\'Files\'" drag-over-class="drag-over-accept">' +
-              '<div class="fileInputWrapper button">' +
-                '<span>or select an image</span>' +
+              '<div class="fileInputWrapper">' +
+                '<span>Drop or select an image</span>' +
                 '<input onchange="angular.element(this).scope().$parent.fileChanged(this, event)" data-key="{{key}}" type="file" accept="image/*" />' +
               '</div>' +
 

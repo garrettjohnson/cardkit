@@ -250,6 +250,12 @@ angular.module('cardkitApp')
           if (elementData.textTransform) {
             el.node.style.textTransform = elementData.textTransform;
           }
+          if (elementData.textShadow) {
+            el.node.style.textShadow = elementData.textShadow;
+          }
+          if (elementData.letterSpacing) {
+            el.node.style.letterSpacing = elementData.letterSpacing;
+          }
           el.attr(elementData);
 
           if(elementData.type === 'text') {

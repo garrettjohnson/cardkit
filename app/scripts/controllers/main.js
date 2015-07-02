@@ -8,11 +8,7 @@
  * Controller of the cardkitApp
  */
 angular.module('cardkitApp')
-  .controller('MainCtrl', function ($scope, $location, $analytics, saveSvgAsPng, themeConfig, templateConfig) {
-  if (!$scope.googleInfo){ //ooh dirty. ah well. todo: as service
-    $location.path('/login');
-  }
-  $analytics.pageTrack('/homepage');
+  .controller('MainCtrl', function ($scope, $location, saveSvgAsPng, themeConfig, templateConfig) {
 
     $scope.config = {
       sizes: [
@@ -28,19 +24,27 @@ angular.module('cardkitApp')
           height: 370,
           gridSize: 20
         },
-        // {
-        //   name: 'Video',
-        //   width: 640,
-        //   height: 360,
-        // },
+        {
+          name: 'Instagram',
+          width: 640,
+          height: 640,
+          gridSize: 16.25
+        },
+        {
+          name: '720p Slide',
+          width: 640,
+          height: 360,
+          gridSize: 20
+        },
       ],
       themes: themeConfig,
       templates: templateConfig,
       output: {
         scale: 2,
-        editable: {
-          scale: true
-        }
+        // To Bring Back Slider
+        // editable: {
+        //   scale: true
+        // }
       },
       svg: {
         canvas: {
@@ -125,15 +129,11 @@ angular.module('cardkitApp')
       return event.dataTransfer || null;
     }
 
-    $scope.removeImage = function(key) {
+    $scope.removeImage = function() {
       this.element.src = '';
     };
 
     $scope.downloadSvg = function() {
-      $analytics.eventTrack($scope.template.name, {
-        category: 'save',
-        label:  $scope.size.name
-      });
       saveSvgAsPng(document.getElementById('snap-svg'), 'image.png', {
         scale: $scope.config.output.scale
       });
