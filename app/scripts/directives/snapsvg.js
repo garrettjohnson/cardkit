@@ -349,7 +349,7 @@ angular.module('cardkitApp')
 	      			elements.push(el);
 	      		}
 
-	      		// Update the attributes (e.g. text and colours) based on config data
+	      		// Update the attributes (e.g. text and Colors) based on config data
 	      		var elementData = element;
 	      		delete elementData.$$hashKey;
 

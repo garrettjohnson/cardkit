@@ -15,7 +15,7 @@ angular.module('cardkitApp')
           name: 'Quote',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -125,7 +125,7 @@ angular.module('cardkitApp')
             }, {
               name: 'Headline',
               type: 'text',
-              text: 'Edit this text, and drag it around.\n\nYou can upload your own background image,\nlogo, and change the colour of the text too.',
+              text: 'Edit this text, and drag it around.\n\nYou can upload your own background image,\nlogo, and change the Color of the text too.',
               fill: function() {
                 return $scope.theme.quote;
               },
@@ -154,7 +154,7 @@ angular.module('cardkitApp')
           name: 'Quote Big',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -297,7 +297,7 @@ angular.module('cardkitApp')
           name: 'Quote With Headshot',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -460,7 +460,7 @@ angular.module('cardkitApp')
           name: 'Big Number',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -592,7 +592,7 @@ angular.module('cardkitApp')
           name: 'Illustration',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 10,
               height: function() {
@@ -738,10 +738,10 @@ angular.module('cardkitApp')
             }];
           }
         }, {
-          name: 'Chart: 1 Column',
+          name: 'Color Block: Right',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 10,
               height: function() {
@@ -754,10 +754,10 @@ angular.module('cardkitApp')
                 return $scope.theme.background;
               }
             }, {
-              name: 'Graph',
+              name: 'Image',
               type: 'image',
               width: function() {
-                return $scope.size.width * 0.6;
+                return $scope.size.width;
               },
               controlsOrder: 1,
               height: function() {
@@ -806,63 +806,36 @@ angular.module('cardkitApp')
                 return $scope.size.height;
               },
               width: function() {
-                return $scope.size.width * 0.3;
+                return $scope.size.width * 0.5;
               },
               y: '0%',
               x: function() {
                 return $scope.size.width - this.width();
               },
-              fill: function() {
-                return $scope.theme.xrefBackground;
-              }
+              fill: '#9ef3ee'
             }, {
               name: 'Logo',
               type: 'image',
-              controlsOrder: 10,
+              controlsOrder: 6,
               width: function() {
-                return $scope.size.gridSize * 2;
+                return 224;
               },
               height: function() {
-                return $scope.size.gridSize * 2;
+                return 100;
               },
               src: function() {
                 return $scope.theme.images.logoSrc;
               },
               opacity: 1,
               x: function() {
-                return $scope.size.width - ($scope.size.gridSize * 3);
+                var w = ($scope.size.width) / 2;
+                return w - (this.width() / 2);
               },
               y: function() {
-                var h = ($scope.size.gridSize);
-                return $scope.size.height - (this.height() + h);
+                return $scope.size.height - this.height();
               },
               preserveAspectRatio: 'xMinYMin meet',
               draggable: false
-            }, {
-              name: 'Reference Text',
-              type: 'text',
-              text: 'FT.COM/\nCOMPANIES',
-              controlsOrder: 3,
-              fill: function() {
-                return $scope.theme.xref;
-              },
-              fontSize: 18,
-              fontFamily: function() {
-                return $scope.theme.xrefFont;
-              },
-              textAnchor: 'start',
-              x: function() {
-                var w = $scope.size.width;
-                return (w - w*0.3) + $scope.size.gridSize;
-              },
-              y: function() {
-                return $scope.size.height - ($scope.size.gridSize*2 + 2);
-              },
-              fontWeight: 500,
-              draggable: false,
-              editable: {
-                text: true
-              }
             }, {
               name: 'Explanatory Text',
               type: 'text',
@@ -899,10 +872,10 @@ angular.module('cardkitApp')
             }];
           }
         }, {
-          name: 'Chart: 2 Column',
+          name: 'Color Block: Left',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -915,10 +888,10 @@ angular.module('cardkitApp')
                 return $scope.theme.background;
               }
             }, {
-              name: 'Graph',
+              name: 'Image',
               type: 'image',
               width: function() {
-                return $scope.size.width * 0.7;
+                return $scope.size.width;
               },
               controlsOrder: 1,
               height: function() {
@@ -955,70 +928,41 @@ angular.module('cardkitApp')
                 ],
               }
             }, {
-              name: 'Side Explanation Background',
+              name: 'Color Block Background',
               type: 'rect',
               controlsOrder: 5,
               height: function() {
                 return $scope.size.height;
               },
               width: function() {
-                return $scope.size.width * 0.25;
+                return $scope.size.width * 0.5;
               },
               y: '0%',
-              x: function() {
-                return $scope.size.width - this.width();
-              },
-              fill: function() {
-                return $scope.theme.xrefBackground;
-              }
+              x: '0%',
+              fill: '#9ef3ee',
             }, {
               name: 'Logo',
               type: 'image',
               controlsOrder: 6,
               width: function() {
-                return $scope.size.gridSize * 2;
+                return 224;
               },
               height: function() {
-                return $scope.size.gridSize * 2;
+                return 100;
               },
               src: function() {
                 return $scope.theme.images.logoSrc;
               },
               opacity: 1,
               x: function() {
-                return $scope.size.width - ($scope.size.gridSize * 3);
+                var w = ($scope.size.width) / 2;
+                return w - (this.width() / 2);
               },
               y: function() {
-                var h = ($scope.size.gridSize);
-                return $scope.size.height - (this.height() + h);
+                return $scope.size.height - this.height();
               },
               preserveAspectRatio: 'xMinYMin meet',
               draggable: false
-            }, {
-              name: 'Reference Text',
-              type: 'text',
-              text: 'FT.COM/\nCOMPANIES',
-              controlsOrder: 3,
-              fill: function() {
-                return $scope.theme.xref;
-              },
-              fontSize: 18,
-              fontFamily: function() {
-                return $scope.theme.xrefFont;
-              },
-              textAnchor: 'start',
-              x: function() {
-                var w = $scope.size.width;
-                return (w - w*0.25) + $scope.size.gridSize;
-              },
-              y: function() {
-                return $scope.size.height - ($scope.size.gridSize*2 + 2);
-              },
-              fontWeight: 500,
-              draggable: false,
-              editable: {
-                text: true
-              }
             }, {
               name: 'Explanatory Text',
               type: 'text',
@@ -1058,7 +1002,7 @@ angular.module('cardkitApp')
           name: 'College Insta',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -1149,8 +1093,6 @@ angular.module('cardkitApp')
               y: function() {
                 return $scope.size.height - this.height();
               },
-              // x: 500,
-              // y: 150,
               preserveAspectRatio: 'xMinYMin meet',
               draggable: false
             }, {
@@ -1254,7 +1196,7 @@ angular.module('cardkitApp')
           name: 'Promo A',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -1375,7 +1317,7 @@ angular.module('cardkitApp')
           name: 'Promo B',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -1420,7 +1362,7 @@ angular.module('cardkitApp')
                 ],
               }
             }, {
-              name: 'Side Explanation Background',
+              name: 'Color Block Background',
               type: 'rect',
               controlsOrder: 5,
               height: function() {
@@ -1498,7 +1440,7 @@ angular.module('cardkitApp')
           name: 'Breaking News',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 17,
               height: function() {
@@ -1690,7 +1632,7 @@ angular.module('cardkitApp')
           name: 'FT Weekend -- Quote With Headshot',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 7,
               height: function() {
@@ -1831,7 +1773,7 @@ angular.module('cardkitApp')
           name: 'FT Weekend -- Magazine Sidebar',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 10,
               height: function() {
@@ -1972,7 +1914,7 @@ angular.module('cardkitApp')
           name: 'FT Weekend -- Recipe Card',
           elements: function($scope) {
             return [{
-              name: 'Background Colour',
+              name: 'Background Color',
               type: 'rect',
               controlsOrder: 10,
               height: function() {
