@@ -1124,18 +1124,27 @@ angular.module('cardkitApp')
             }, {
               name: 'Promo Image',
               type: 'image',
-              width: function() {
-                return $scope.size.width;
-              },
               controlsOrder: 1,
               height: function() {
                 var h;
-                if (typeof this.width === 'string') {
-                  h = +this.width;
-                } else {
-                  h = this.width();
-                }
+                h = $scope.size.height * 1.5;
                 return h;
+                // var h;
+                // if (typeof this.width === 'string') {
+                //   h = +this.width;
+                // } else {
+                //   h = this.width();
+                // }
+                // return h;
+              },
+              width: function() {
+                var w;
+                if (typeof this.height === 'string') {
+                  w = +this.height;
+                } else {
+                  w = this.height();
+                }
+                return w;
               },
               src: function() {
                 return $scope.theme.images.promoSrc;
@@ -1189,7 +1198,7 @@ angular.module('cardkitApp')
               fontSize: 90,
               lineHeight:0.5,
               textTransform: 'uppercase',
-              textShadow: '1px 1px 1px #000000',
+              // textShadow: '1px 1px 1px #000000',
               letterSpacing: '-1.5',
               fontFamily: function() {
                 return $scope.theme.headlineFont;
@@ -1678,7 +1687,8 @@ angular.module('cardkitApp')
               },
             }];
           }
-        },{
+        },
+        {
           name: 'NorthPointe.org -- Quote With Headshot',
           elements: function($scope) {
             return [{

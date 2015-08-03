@@ -13,6 +13,12 @@ angular.module('cardkitApp')
     $scope.config = {
       sizes: [
         {
+          name: 'Instagram',
+          width: 640,
+          height: 640,
+          gridSize: 16.25
+        },
+        {
           name: 'Twitter',
           width: 650,
           height: 320,
@@ -23,12 +29,6 @@ angular.module('cardkitApp')
           width: 800,
           height: 370,
           gridSize: 20
-        },
-        {
-          name: 'Instagram',
-          width: 640,
-          height: 640,
-          gridSize: 16.25
         },
         {
           name: '720p Slide',

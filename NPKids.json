@@ -1,0 +1,25 @@
+/*,{
+  "name": "NP Kids",
+  "xrefText" : "NP Kids",
+  "background": "#9adf50",
+  "headline": "#373737",
+  "xrefBackground": "#09a25c",
+  "quote": "#373737",
+  "highlightColor" : "#ffffff",
+  "xref": "#ffffff",
+  "headlineFont": "Gotham",
+  "creditFont" : "Gotham",
+  "xrefFont" : "Gotham",
+  "logoWidth": 224,
+  "images" : {
+    "logoSrc":  "collegeSrc",
+    "logoAltSrc": "collegeSrc",
+    "logoWidth": "90",
+    "headshotSrc": "headshotSrc",
+    "bookmark":  "bookmark",
+    "graphSrc" :  "promoSrc",
+    "graphWideSrc":  "promoSrc",
+    "promoSrc" :  "promoSrc",
+    "weekendSrc" : "weekendSrc",
+    "illustrationSrc": "illustrationSrc"
+    }*/
